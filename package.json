@@ -1,0 +1,34 @@
+{
+  "name": "node-branch-merge-util",
+  "version": "1.0.0",
+  "description": "CLI tool to merge git branches based on version",
+  "main": "index.js",
+  "engines": {
+    "node": ">=5.10.0",
+    "npm": ">=3.0.0"
+  },
+  "dependencies": {
+    "semver": "^5.5.0",
+    "minimist": "^1.2.0"
+  },
+  "scripts": {
+    "dry-run": "node ./branch-merge.js",
+    "dev-run": "node ./branch-merge.js --dev --masterBranch=develop_test",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/babilog/node-branch-merge-util.git"
+  },
+  "keywords": [
+    "node",
+    "git",
+    "auto-merge"
+  ],
+  "author": "Gabriel Babilonia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/babilog/node-branch-merge-util/issues"
+  },
+  "homepage": "https://github.com/babilog/node-branch-merge-util#readme"
+}
