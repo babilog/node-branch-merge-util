@@ -1,16 +1,20 @@
 (async () => {
-  const { dev, branchPrefixList, push, masterBranch } = require("minimist")(
-    process.argv.slice(2),
-    {
-      boolean: ["dev", "push"],
-      default: {
-        dev: false,
-        push: false,
-        branchPrefixList: "",
-        masterBranch: ""
-      }
+  const {
+    gitUrl,
+    dev,
+    branchPrefixList,
+    push,
+    masterBranch
+  } = require("minimist")(process.argv.slice(2), {
+    boolean: ["dev", "push"],
+    default: {
+      gitUrl: "",
+      dev: false,
+      push: false,
+      branchPrefixList: "",
+      masterBranch: ""
     }
-  );
+  });
 
   const exec = require("child_process").exec;
   const semver = require("semver");
@@ -211,6 +215,23 @@
       await pushBranch(branchMap.mergeInto);
     }
     /* eslint-enable no-await-in-loop */
+  };
+
+  /**
+   * Clones the repo and cd's into the directory
+   * @param {String} url
+   */
+  const cloneRepo = async url => {
+    if (!gitUrl) {
+      throw new Error("There is no specified git URL");
+    }
+    if (!push) {
+      console.info(`[DRY-RUN]: git clone ${gitUrl}`);
+      console.info("[DRY-RUN]: cd *");
+    }
+
+    await execPromise(`git clone ${gitUrl}`);
+    await execPromise("cd *");
   };
 
   try {
