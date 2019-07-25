@@ -222,19 +222,16 @@
    * @param {String} url
    */
   const cloneRepo = async url => {
-    if (!gitUrl) {
+    if (!url) {
       throw new Error("There is no specified git URL");
     }
-    if (!push) {
-      console.info(`[DRY-RUN]: git clone ${gitUrl}`);
-      console.info("[DRY-RUN]: cd *");
-    }
 
-    await execPromise(`git clone ${gitUrl}`);
-    await execPromise("cd *");
+    await execPromise(`git clone ${gitUrl} repo`);
+    process.chdir("repo");
   };
 
   try {
+    await cloneRepo(gitUrl);
     await execPromise("git fetch -p");
     await setupMergeStrategy();
     const branchNames = await getBranchNames();
