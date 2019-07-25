@@ -24,6 +24,10 @@ Make sure that you have your git account setup locally since it'll run `git` com
 
 ### Args
 
+#### `--gitUrl` (string)
+
+The `.git` url for the repo you are running the merge commands agains't. Keep in mind that the username on the git url must have permission to pull and push change to the repo
+
 #### `--branchPrefixList` (string list space - delimited)
 
 Will scope your branch list for merging based on the naming specified.
